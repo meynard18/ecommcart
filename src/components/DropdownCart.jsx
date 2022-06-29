@@ -81,25 +81,25 @@ const DropdownCart = () => {
                         </DeleteButton>
                      </FlexBox>
                   </StyledBox>
-                  <TotalBox>
-                     <AmountBox>
-                        <span
-                           style={{
-                              color: '#888888',
-                              fontWeight: 500,
-                              fontSize: '.875rem',
-                           }}
-                        >
-                           Total Amount
-                        </span>
-                        <h3>${price}</h3>
-                     </AmountBox>
-
-                     <CompleteOrderButton>Checkout</CompleteOrderButton>
-                  </TotalBox>
                </>
             ))
          )}
+         <TotalBox>
+            <AmountBox>
+               <span
+                  style={{
+                     color: '#888888',
+                     fontWeight: 500,
+                     fontSize: '.875rem',
+                  }}
+               >
+                  Total Amount
+               </span>
+               <h3>${price}</h3>
+            </AmountBox>
+
+            <CompleteOrderButton>Checkout</CompleteOrderButton>
+         </TotalBox>
       </MainContainer>
    );
 };
