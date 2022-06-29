@@ -83,6 +83,7 @@ const StyledTypography = styled(Box)`
    align-items: center;
    justify-content: center;
    padding: 0.25rem;
+   font-weight: 600;
 `;
 const StyledButton = styled(Button)`
    height: 1.5rem;

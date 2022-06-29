@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import DropdownCart from './DropdownCart';
 import { ProductContext } from '../components/Product/ProductContext';
+import { styled } from '@mui/material/styles';
 
 const Navbar = () => {
    const [anchorEl, setAnchorEl] = React.useState(null);
@@ -24,7 +25,7 @@ const Navbar = () => {
       <>
          <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
-               <Toolbar>
+               <StyledToolBar>
                   <IconButton
                      size="large"
                      edge="start"
@@ -58,7 +59,7 @@ const Navbar = () => {
                         <DropdownCart />
                      </Menu>
                   </div>
-               </Toolbar>
+               </StyledToolBar>
             </AppBar>
          </Box>
       </>
@@ -66,3 +67,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+const StyledToolBar = styled(Toolbar)`
+   background-color: #f78702;
+`;

@@ -9,14 +9,35 @@ import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const CardComponent = () => {
-   const { data, handleAddToCart } = useContext(ProductContext);
+   const {
+      data,
+      handleAddToCart,
+      handleOpen,
+      handleClose,
+      open,
+      setOpen,
+      setModal,
+      modal,
+   } = useContext(ProductContext);
 
+   // const [open, setOpen] = React.useState(false);
+   // const handleOpen = () => setOpen(true);
+   // const handleClose = () => setOpen(false);
+
+   const handleModal = (item) => {
+      setModal([item]);
+      handleOpen();
+   };
    return (
       <>
          <Grid container sx={{ justifyContent: 'center', gap: 4, mt: 6 }}>
             {data.map((item, idx) => (
                <Card sx={{ minWidth: 340 }} key={idx}>
-                  <CardActionArea>
+                  <CardActionArea
+                     onClick={() => {
+                        handleModal(item);
+                     }}
+                  >
                      <CardMedia
                         component="img"
                         height="240"
@@ -52,7 +73,7 @@ const CardComponent = () => {
 export default CardComponent;
 
 const StyledButton = styled(Button)`
-   background-color: gray;
+   background-color: #353839;
    color: white;
    width: 90%;
    margin: 1rem auto;
