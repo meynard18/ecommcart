@@ -4,7 +4,12 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import {
+   Button,
+   CardActionArea,
+   cardActionAreaClasses,
+   CardActions,
+} from '@mui/material';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -18,16 +23,15 @@ const CardComponent = () => {
       setOpen,
       setModal,
       modal,
+      cart,
    } = useContext(ProductContext);
-
-   // const [open, setOpen] = React.useState(false);
-   // const handleOpen = () => setOpen(true);
-   // const handleClose = () => setOpen(false);
+   console.log(data.map((item) => item.count));
 
    const handleModal = (item) => {
       setModal([item]);
       handleOpen();
    };
+
    return (
       <>
          <Grid container sx={{ justifyContent: 'center', gap: 4, mt: 6 }}>
@@ -67,6 +71,7 @@ const CardComponent = () => {
                         size="small"
                         color="primary"
                         value={item}
+                        disabled={item.quantity < item.count ? false : true}
                         onClick={() => handleAddToCart(item)}
                      >
                         Add to Cart

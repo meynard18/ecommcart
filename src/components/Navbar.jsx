@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,9 +10,12 @@ import MenuItem from '@mui/material/MenuItem';
 import DropdownCart from './DropdownCart';
 import { ProductContext } from '../components/Product/ProductContext';
 import { styled } from '@mui/material/styles';
+import { Icon } from '@iconify/react';
 
 const Navbar = () => {
+   const { cart, setCart } = useContext(ProductContext);
    const [anchorEl, setAnchorEl] = React.useState(null);
+   const [show, setShow] = useState(false);
    const open = Boolean(anchorEl);
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -21,6 +24,19 @@ const Navbar = () => {
       setAnchorEl(null);
    };
 
+   const hasItem = {
+      position: 'absolute',
+      top: '2%',
+      backgroundColor: 'green',
+      padding: '0.75rem',
+      textAlign: 'center',
+      borderRadius: '50%',
+      zIndex: '1',
+   };
+
+   const noItem = {
+      display: 'none',
+   };
    return (
       <>
          <Box sx={{ flexGrow: 1 }}>
@@ -33,7 +49,10 @@ const Navbar = () => {
                   >
                      GrabFood!
                   </Typography>
-                  <div>
+                  <StyledCartBox>
+                     <Typography style={cart.length === 0 ? noItem : hasItem}>
+                        {cart.length}
+                     </Typography>
                      <Button
                         color="inherit"
                         id="basic-button"
@@ -43,6 +62,11 @@ const Navbar = () => {
                         onClick={handleClick}
                         style={{ marginRight: '2rem' }}
                      >
+                        <Icon
+                           icon="bi:cart"
+                           height="24"
+                           style={{ margin: '1rem' }}
+                        />
                         Cart
                      </Button>
                      <StyledMenu
@@ -56,7 +80,7 @@ const Navbar = () => {
                      >
                         <DropdownCart />
                      </StyledMenu>
-                  </div>
+                  </StyledCartBox>
                </StyledToolBar>
             </AppBar>
          </Box>
@@ -73,4 +97,8 @@ const StyledToolBar = styled(Toolbar)`
 const StyledMenu = styled(Menu)`
    margin-top: 1rem;
    margin-left: -10rem;
+`;
+
+const StyledCartBox = styled(Box)`
+   position: relative;
 `;
