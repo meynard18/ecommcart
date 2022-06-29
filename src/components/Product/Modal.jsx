@@ -73,62 +73,63 @@ export default function BasicModal() {
 
    return (
       <div>
-         {modal.map((item) => (
-            <Modal
-               open={open}
-               onClose={handleClose}
-               aria-labelledby="modal-modal-title"
-               aria-describedby="modal-modal-description"
-               key={item.id}
-            >
-               <ItemBox sx={style}>
-                  <img src={item.image} alt="food" />
+         {modal.map((item, i) => (
+            <Box key={item.id}>
+               <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+               >
+                  <ItemBox sx={style}>
+                     <img src={item.image} alt="food" />
 
-                  <FlexBox>
-                     <Typography
-                        id="modal-modal-title"
-                        variant="h4"
-                        component="h2"
-                     >
-                        {item.itemName}
-                     </Typography>
-                     <Typography
-                        variant="h6"
-                        component="h4"
-                        id="modal-modal-description"
-                        sx={{ mt: 2, color: 'gray' }}
-                     >
-                        {item.description}
-                     </Typography>
-                     <CallToAction>
-                        <StyledButton onClick={() => decrement(item)}>
-                           -
-                        </StyledButton>
-                        <StyledTypography>
-                           {quantity + item.quantity}
-                        </StyledTypography>
+                     <FlexBox>
+                        <Typography
+                           id="modal-modal-title"
+                           variant="h4"
+                           component="h2"
+                        >
+                           {item.itemName}
+                        </Typography>
+                        <Typography
+                           variant="h6"
+                           component="h4"
+                           id="modal-modal-description"
+                           sx={{ mt: 2, color: 'gray' }}
+                        >
+                           {item.description}
+                        </Typography>
+                        <CallToAction>
+                           <StyledButton onClick={() => decrement(item)}>
+                              -
+                           </StyledButton>
+                           <StyledTypography>
+                              {quantity + item.quantity}
+                           </StyledTypography>
 
-                        <StyledButton onClick={() => increment(item)}>
-                           +
-                        </StyledButton>
-                     </CallToAction>
-                     <AddButton
-                        onClick={() => {
-                           handleAddToCart(item);
-                        }}
-                     >
-                        ADD TO CART
-                     </AddButton>
-                     <CancelButton
-                        onClick={() => {
-                           removeItem(item);
-                        }}
-                     >
-                        Cancel
-                     </CancelButton>
-                  </FlexBox>
-               </ItemBox>
-            </Modal>
+                           <StyledButton onClick={() => increment(item)}>
+                              +
+                           </StyledButton>
+                        </CallToAction>
+                        <AddButton
+                           onClick={() => {
+                              handleAddToCart(item);
+                           }}
+                        >
+                           ADD TO CART
+                        </AddButton>
+                        <CancelButton
+                           onClick={() => {
+                              removeItem(item);
+                           }}
+                        >
+                           Cancel
+                        </CancelButton>
+                     </FlexBox>
+                  </ItemBox>
+               </Modal>
+            </Box>
          ))}
       </div>
    );

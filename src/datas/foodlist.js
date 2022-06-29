@@ -33,7 +33,7 @@ const products = [
       image: image3,
       itemName: 'Donut',
       count: 7,
-      description: 'The go food to for all the cops!',
+      description: 'The go to food of all the cops!',
       quantity: 1,
       price: 6,
    },

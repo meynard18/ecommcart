@@ -25,7 +25,6 @@ const CardComponent = () => {
       modal,
       cart,
    } = useContext(ProductContext);
-   console.log(data.map((item) => item.count));
 
    const handleModal = (item) => {
       setModal([item]);

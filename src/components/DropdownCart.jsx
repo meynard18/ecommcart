@@ -1,11 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductContext } from './Product/ProductContext';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Typography } from '@mui/material';
+// import OrderSummary from '../components/Product/OrderSummary';
 
 const DropdownCart = () => {
-   const { cart, setCart, quantity, setQuantity, price, setPrice } =
-      useContext(ProductContext);
+   const {
+      cart,
+      setCart,
+      quantity,
+      price,
+      setPrice,
+      // openConfirmation,
+      // setOpenConfirmation,
+   } = useContext(ProductContext);
 
    //// need to remove item and reset the quantity back to default
    const removeItem = (item) => {
@@ -29,6 +37,10 @@ const DropdownCart = () => {
       }
    };
 
+   // const handleOpenSummary = () => {
+   //    console.log(cart.map((item) => item.id));
+   //    setOpenConfirmation(true);
+   // };
    useEffect(() => {
       const handlePrice = () => {
          let total = 0;
@@ -48,40 +60,38 @@ const DropdownCart = () => {
             </MessageBox>
          ) : (
             cart.map((item, i) => (
-               <>
-                  <StyledBox key={i}>
-                     <FlexBox>
-                        <img
-                           src={item.image}
-                           style={{
-                              width: '5rem',
-                              height: '4rem',
-                              borderRadius: '.5rem',
-                           }}
-                           alt="food"
-                        />
+               <StyledBox key={i}>
+                  <FlexBox>
+                     <img
+                        src={item.image}
+                        style={{
+                           width: '5rem',
+                           height: '4rem',
+                           borderRadius: '.5rem',
+                        }}
+                        alt="food"
+                     />
 
-                        <ProductDetails>
-                           <ProductName>{item.itemName}</ProductName>
-                           <CallToAction>
-                              <StyledButton onClick={() => decrement(item)}>
-                                 -
-                              </StyledButton>
-                              <StyledTypography>
-                                 {quantity + item.quantity}
-                              </StyledTypography>
+                     <ProductDetails>
+                        <ProductName>{item.itemName}</ProductName>
+                        <CallToAction>
+                           <StyledButton onClick={() => decrement(item)}>
+                              -
+                           </StyledButton>
+                           <StyledTypography>
+                              {quantity + item.quantity}
+                           </StyledTypography>
 
-                              <StyledButton onClick={() => increment(item)}>
-                                 +
-                              </StyledButton>
-                           </CallToAction>
-                        </ProductDetails>
-                        <DeleteButton onClick={() => removeItem(item)}>
-                           X
-                        </DeleteButton>
-                     </FlexBox>
-                  </StyledBox>
-               </>
+                           <StyledButton onClick={() => increment(item)}>
+                              +
+                           </StyledButton>
+                        </CallToAction>
+                     </ProductDetails>
+                     <DeleteButton onClick={() => removeItem(item)}>
+                        X
+                     </DeleteButton>
+                  </FlexBox>
+               </StyledBox>
             ))
          )}
          <TotalBox>
@@ -99,6 +109,7 @@ const DropdownCart = () => {
             </AmountBox>
 
             <CompleteOrderButton>Checkout</CompleteOrderButton>
+            {/* <OrderSummary /> */}
          </TotalBox>
       </MainContainer>
    );

@@ -14,9 +14,11 @@ function App() {
    const [modal, setModal] = useState([]);
    const [open, setOpen] = useState(false);
    const [price, setPrice] = useState(0);
+   const [openConfirmation, setOpenConfirmation] = useState(false);
 
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
+   const handleCloseSummary = () => setOpenConfirmation(false);
 
    const handleAddToCart = (item) => {
       //// need to check if item is already in the cart!
@@ -48,6 +50,9 @@ function App() {
       setModal,
       price,
       setPrice,
+      openConfirmation,
+      setOpenConfirmation,
+      handleCloseSummary,
    };
    return (
       <>
