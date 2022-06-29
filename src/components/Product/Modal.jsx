@@ -9,12 +9,12 @@ import { styled } from '@mui/material/styles';
 
 const style = {
    position: 'absolute',
-   top: '20%',
+   top: '40%',
    left: '50%',
    transform: 'translate(-50%, -50%)',
    width: 800,
+   height: 300,
    bgcolor: 'background.paper',
-   //    border: '2px solid #000',
    boxShadow: 24,
    p: 4,
 };
@@ -64,6 +64,13 @@ export default function BasicModal() {
       }
    };
 
+   const removeItem = (item) => {
+      const itemIndex = modal.indexOf(item);
+      const updatedCart = modal.filter((el) => el !== item);
+      modal[itemIndex].quantity = 1;
+      setModal([...updatedCart]);
+   };
+
    return (
       <div>
          {modal.map((item) => (
@@ -89,7 +96,7 @@ export default function BasicModal() {
                         variant="h6"
                         component="h4"
                         id="modal-modal-description"
-                        sx={{ mt: 2 }}
+                        sx={{ mt: 2, color: 'gray' }}
                      >
                         {item.description}
                      </Typography>
@@ -112,6 +119,13 @@ export default function BasicModal() {
                      >
                         ADD TO CART
                      </AddButton>
+                     <CancelButton
+                        onClick={() => {
+                           removeItem(item);
+                        }}
+                     >
+                        Cancel
+                     </CancelButton>
                   </FlexBox>
                </ItemBox>
             </Modal>
@@ -130,13 +144,15 @@ const CallToAction = styled(Box)`
    justify-content: center;
    align-items: center;
    border: 1px solid #ccc;
-   margin: auto 0.5rem;
-   height: 2rem;
+   margin: 1rem 0.5rem;
+   height: 3.5rem;
+   width: 10rem;
+   border-radius: 2rem;
 `;
 const AddButton = styled(Button)`
    background-color: #353839;
    color: white;
-   width: 90%;
+   width: 15rem;
    margin: 1rem auto;
    padding: 0.25rem 0;
    border-radius: 5rem;
@@ -151,10 +167,24 @@ const StyledTypography = styled(Box)`
    justify-content: center;
    padding: 0.25rem;
    font-weight: 600;
+   font-size: 1.5rem;
+   color: #555555;
 `;
 
 const StyledButton = styled(Button)`
    height: 1.5rem;
    color: black;
-   font-size: 1.25rem;
+   font-size: 1.5rem;
+`;
+
+const CancelButton = styled(Button)`
+   background-color: #ab003c;
+   color: white;
+   width: 15rem;
+   margin: 1rem auto;
+   padding: 0.25rem 0;
+   border-radius: 5rem;
+   &:hover {
+      background-color: #e53935;
+   }
 `;

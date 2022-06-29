@@ -45,10 +45,19 @@ const CardComponent = () => {
                         alt="green iguana"
                      />
                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography
+                           gutterBottom
+                           variant="h5"
+                           component="div"
+                           style={{ textAlign: 'center' }}
+                        >
                            {item.itemName}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                           style={{ textAlign: 'center' }}
+                           variant="subtitle1"
+                           color="text.secondary"
+                        >
                            {item.description}
                         </Typography>
                      </CardContent>

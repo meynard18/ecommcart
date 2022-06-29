@@ -13,25 +13,10 @@ function App() {
    const [quantity, setQuantity] = useState(0);
    const [modal, setModal] = useState([]);
    const [open, setOpen] = useState(false);
+   const [price, setPrice] = useState(0);
 
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
-
-    const decrement = (item) => {
-      const itemIndex = cart.indexOf(item);
-      if (cart[itemIndex].quantity !== 1) {
-         cart[itemIndex].quantity -= 1;
-         setCart([...cart]);
-      }
-   };
-   const increment = (item) => {
-      const itemIndex = cart.indexOf(item);
-      if (cart[itemIndex].count > cart[itemIndex].quantity) {
-         cart[itemIndex].quantity += 1;
-         console.log('hi');
-         setCart([...cart]);
-      }
-   };
 
    const handleAddToCart = (item) => {
       //// need to check if item is already in the cart!
@@ -61,6 +46,8 @@ function App() {
       setOpen,
       modal,
       setModal,
+      price,
+      setPrice,
    };
    return (
       <>

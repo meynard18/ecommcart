@@ -26,15 +26,12 @@ const Navbar = () => {
          <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                <StyledToolBar>
-                  <IconButton
-                     size="large"
-                     edge="start"
-                     color="inherit"
-                     aria-label="menu"
-                     sx={{ mr: 2 }}
-                  ></IconButton>
-                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                     ShopNow!
+                  <Typography
+                     variant="h6"
+                     component="div"
+                     sx={{ flexGrow: 1, marginLeft: '2rem' }}
+                  >
+                     GrabFood!
                   </Typography>
                   <div>
                      <Button
@@ -44,10 +41,11 @@ const Navbar = () => {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                         onClick={handleClick}
+                        style={{ marginRight: '2rem' }}
                      >
                         Cart
                      </Button>
-                     <Menu
+                     <StyledMenu
                         id="basic-menu"
                         anchorEl={anchorEl}
                         open={open}
@@ -57,7 +55,7 @@ const Navbar = () => {
                         }}
                      >
                         <DropdownCart />
-                     </Menu>
+                     </StyledMenu>
                   </div>
                </StyledToolBar>
             </AppBar>
@@ -70,4 +68,9 @@ export default Navbar;
 
 const StyledToolBar = styled(Toolbar)`
    background-color: #f78702;
+`;
+
+const StyledMenu = styled(Menu)`
+   margin-top: 1rem;
+   margin-left: -10rem;
 `;
