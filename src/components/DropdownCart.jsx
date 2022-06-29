@@ -41,56 +41,65 @@ const DropdownCart = () => {
    return (
       <MainContainer>
          <h2 style={{ margin: '1rem', color: '#151515' }}>Your Order</h2>
+         {cart.length === 0 ? (
+            <MessageBox>
+               <h2>Cart is Empty</h2>
+               <h3 style={{ color: '#999999' }}>Continue Shopping!</h3>
+            </MessageBox>
+         ) : (
+            cart.map((item, i) => (
+               <>
+                  <StyledBox key={i}>
+                     <FlexBox>
+                        <img
+                           src={item.image}
+                           style={{
+                              width: '5rem',
+                              height: '4rem',
+                              borderRadius: '.5rem',
+                           }}
+                           alt="food"
+                        />
 
-         {cart.map((item, i) => (
-            <StyledBox key={i}>
-               <FlexBox>
-                  <img
-                     src={item.image}
-                     style={{
-                        width: '5rem',
-                        height: '4rem',
-                        borderRadius: '.5rem',
-                     }}
-                     alt="food"
-                  />
+                        <ProductDetails>
+                           <ProductName>{item.itemName}</ProductName>
+                           <CallToAction>
+                              <StyledButton onClick={() => decrement(item)}>
+                                 -
+                              </StyledButton>
+                              <StyledTypography>
+                                 {quantity + item.quantity}
+                              </StyledTypography>
 
-                  <ProductDetails>
-                     <ProductName>{item.itemName}</ProductName>
-                     <CallToAction>
-                        <StyledButton onClick={() => decrement(item)}>
-                           -
-                        </StyledButton>
-                        <StyledTypography>
-                           {quantity + item.quantity}
-                        </StyledTypography>
+                              <StyledButton onClick={() => increment(item)}>
+                                 +
+                              </StyledButton>
+                           </CallToAction>
+                        </ProductDetails>
+                        <DeleteButton onClick={() => removeItem(item)}>
+                           X
+                        </DeleteButton>
+                     </FlexBox>
+                  </StyledBox>
+                  <TotalBox>
+                     <AmountBox>
+                        <span
+                           style={{
+                              color: '#888888',
+                              fontWeight: 500,
+                              fontSize: '.875rem',
+                           }}
+                        >
+                           Total Amount
+                        </span>
+                        <h3>${price}</h3>
+                     </AmountBox>
 
-                        <StyledButton onClick={() => increment(item)}>
-                           +
-                        </StyledButton>
-                     </CallToAction>
-                  </ProductDetails>
-                  <DeleteButton onClick={() => removeItem(item)}>
-                     X
-                  </DeleteButton>
-               </FlexBox>
-            </StyledBox>
-         ))}
-         <TotalBox>
-            <AmountBox>
-               <span
-                  style={{
-                     color: '#888888',
-                     fontWeight: 500,
-                     fontSize: '.875rem',
-                  }}
-               >
-                  Total Amount
-               </span>
-               <h3>${price}</h3>
-            </AmountBox>
-            <CompleteOrderButton>Checkout</CompleteOrderButton>
-         </TotalBox>
+                     <CompleteOrderButton>Checkout</CompleteOrderButton>
+                  </TotalBox>
+               </>
+            ))
+         )}
       </MainContainer>
    );
 };
@@ -190,4 +199,10 @@ const ProductDetails = styled(Box)`
    align-items: center;
    padding: 0.25rem;
    gap: 0.5rem;
+`;
+
+const MessageBox = styled(Box)`
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 `;
