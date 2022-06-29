@@ -32,6 +32,7 @@ export default function BasicModal() {
       setQuantity,
       cart,
       setCart,
+      setModal,
    } = useContext(ProductContext);
 
    const handleAddToCart = (item) => {
@@ -39,32 +40,27 @@ export default function BasicModal() {
       if (itemIndex === -1) {
          return setCart([item, ...cart]);
       }
-
       //// increment existing quantity if item already in the cart
       if (cart[itemIndex].count > cart[itemIndex].quantity) {
-         //  cart[itemIndex].quantity += 1;
          setCart([...cart]);
       }
    };
 
    const increment = (item) => {
-      const itemIndex = cart.indexOf(item);
+      const itemIndex = modal.indexOf(item);
+      console.log(itemIndex);
       if (item.quantity < item.count) {
-         console.log('hi');
+         modal[itemIndex].quantity += 1;
+         setModal([...modal]);
       }
-      //   if ((item.quantity += 1));
-      //   if (cart[itemIndex].count > cart[itemIndex].quantity) {
-      //      cart[itemIndex].quantity += 1;
-      //      console.log('hi');
-      //      setCart([...cart]);
-      //   }
    };
 
    const decrement = (item) => {
-      const itemIndex = cart.indexOf(item);
-      if (cart[itemIndex].quantity !== 1) {
-         cart[itemIndex].quantity -= 1;
-         setCart([...cart]);
+      const itemIndex = modal.indexOf(item);
+      console.log(itemIndex);
+      if (modal[itemIndex].quantity !== 1) {
+         modal[itemIndex].quantity -= 1;
+         setModal([...modal]);
       }
    };
 
