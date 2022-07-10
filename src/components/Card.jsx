@@ -24,11 +24,13 @@ const CardComponent = () => {
       setModal,
       modal,
       cart,
+      setOpenConfirmation,
    } = useContext(ProductContext);
 
    const handleModal = (item) => {
       setModal([item]);
       handleOpen();
+      setOpenConfirmation(false);
    };
 
    return (

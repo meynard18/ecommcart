@@ -110,6 +110,7 @@ const DropdownCart = () => {
             </AmountBox>
 
             <CompleteOrderButton
+               disabled={cart.length === 0 ? 'disabled' : ''}
                onClick={() => setOpenConfirmation(!openConfirmation)}
             >
                Checkout
