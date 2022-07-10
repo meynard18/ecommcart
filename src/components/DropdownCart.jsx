@@ -2,18 +2,14 @@ import React, { useContext, useEffect } from 'react';
 import { ProductContext } from './Product/ProductContext';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Typography } from '@mui/material';
-import OrderSummary from '../components/Product/OrderSummary';
 
-const DropdownCart = () => {
+const DropdownCart = ({handleOpenSummary }) => {
    const {
       cart,
       setCart,
       quantity,
       price,
       setPrice,
-      openConfirmation,
-      setOpenConfirmation,
-      handleClose,
    } = useContext(ProductContext);
 
    //// need to remove item and reset the quantity back to default
@@ -38,10 +34,6 @@ const DropdownCart = () => {
       }
    };
 
-   // const handleOpenSummary = () => {
-   //    console.log(cart.map((item) => item.id));
-   //    setOpenConfirmation(true);
-   // };
    useEffect(() => {
       const handlePrice = () => {
          let total = 0;
@@ -111,7 +103,7 @@ const DropdownCart = () => {
 
             <CompleteOrderButton
                disabled={cart.length === 0 ? 'disabled' : ''}
-               onClick={() => setOpenConfirmation(!openConfirmation)}
+               onClick={handleOpenSummary}
             >
                Checkout
             </CompleteOrderButton>

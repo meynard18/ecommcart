@@ -5,30 +5,12 @@ import { ProductContext } from './ProductContext';
 import OrderSummary from './OrderSummary';
 
 const Products = () => {
-   const {
-      data,
-      handleOpen,
-      handleClose,
-      open,
-      setOpen,
-      modal,
-
-      quantity,
-      setQuantity,
-      cart,
-      setCart,
-      setModal,
-      openConfirmation,
-      setOpenConfirmation,
-      handleCloseSummary,
-      price,
-      setPrice,
-   } = useContext(ProductContext);
+   const { openConfirmation } = useContext(ProductContext);
    return (
       <>
          <BasicModal />
          <Card />
-         {openConfirmation ? <OrderSummary /> : ''}
+         {openConfirmation ? <OrderSummary /> : null}
       </>
    );
 };

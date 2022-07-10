@@ -1,31 +1,20 @@
 import React, { useContext } from 'react';
 import { ProductContext } from './Product/ProductContext';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import {
    Button,
    CardActionArea,
-   cardActionAreaClasses,
    CardActions,
+   Card,
+   CardContent,
+   CardMedia,
+   Typography,
+   Grid,
 } from '@mui/material';
-import { Grid } from '@mui/material';
-import { styled } from '@mui/material/styles';
 
 const CardComponent = () => {
-   const {
-      data,
-      handleAddToCart,
-      handleOpen,
-      handleClose,
-      open,
-      setOpen,
-      setModal,
-      modal,
-      cart,
-      setOpenConfirmation,
-   } = useContext(ProductContext);
+   const { data, handleAddToCart, handleOpen, setModal, setOpenConfirmation } =
+      useContext(ProductContext);
 
    const handleModal = (item) => {
       setModal([item]);

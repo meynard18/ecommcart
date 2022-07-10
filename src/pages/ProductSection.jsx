@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Products from '../components/Product/Products';
 
 const Product = () => {

@@ -1,87 +1,45 @@
 import React, { useContext, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 import { ProductContext } from './ProductContext';
-
 import { styled } from '@mui/material/styles';
-
-const style = {
-   position: 'absolute',
-   top: '50%',
-   left: '50%',
-   transform: 'translate(-50%, -50%)',
-   width: 600,
-   height: 800,
-   bgcolor: 'background.paper',
-   boxShadow: 24,
-   p: 4,
-};
+import Box from '@mui/material/Box';
 
 export default function BasicModal() {
-   const {
-      data,
-      handleOpen,
-      handleClose,
-      open,
-      setOpen,
-      modal,
+   const { price, setPrice, confirmedOrder } = useContext(ProductContext);
 
-      quantity,
-      setQuantity,
-      cart,
-      setCart,
-      setModal,
-      openConfirmation,
-      setOpenConfirmation,
-      handleCloseSummary,
-      price,
-      setPrice,
-   } = useContext(ProductContext);
-
-   //    const [open, setOpen] = React.useState(false);
-   //    const handleOpen = () => setOpen(true);
-   //    const handleClose = () => setOpen(false);
-   //    const handleOpenSummary = () => {
-   //       console.log('hi');
-   //    };
    useEffect(() => {
       const handlePrice = () => {
          let total = 0;
-         cart.map((item) => (total += item.quantity * item.price));
+         confirmedOrder.map((item) => (total += item.quantity * item.price));
          setPrice(total);
       };
       handlePrice();
-   });
+   }, []);
    return (
       <StyledBox>
          <h1>Order Confirmed!</h1>
-         {cart.map((item) => (
-            <>
-               <FlexBox>
-                  <DetailsBox>
-                     <h3>{item.itemName}</h3>
-                     <img
-                        src={item.image}
-                        style={{
-                           width: '5rem',
-                           height: '4rem',
-                           borderRadius: '.5rem',
-                        }}
-                        alt="food"
-                     />
-                  </DetailsBox>
-                  <DetailsBox>
-                     <h3>Quality</h3>
-                     <h4>{item.quantity}</h4>
-                  </DetailsBox>
-                  <DetailsBox>
-                     <h3>Total</h3>
-                     <h4>${item.price * item.quantity}</h4>
-                  </DetailsBox>
-               </FlexBox>
-            </>
+         {confirmedOrder.map((item) => (
+            <FlexBox key={item.id}>
+               <DetailsBox>
+                  <h3>{item.itemName}</h3>
+                  <img
+                     src={item.image}
+                     style={{
+                        width: '5rem',
+                        height: '4rem',
+                        borderRadius: '.5rem',
+                     }}
+                     alt="food"
+                  />
+               </DetailsBox>
+               <DetailsBox>
+                  <h3>Quality</h3>
+                  <h4>{item.quantity}</h4>
+               </DetailsBox>
+               <DetailsBox>
+                  <h3>Total</h3>
+                  <h4>${item.price * item.quantity}</h4>
+               </DetailsBox>
+            </FlexBox>
          ))}
          <TotalAmount>
             <h3>SubTotal:</h3>

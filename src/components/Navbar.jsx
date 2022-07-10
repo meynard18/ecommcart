@@ -1,24 +1,33 @@
 import React, { useContext, useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import DropdownCart from './DropdownCart';
 import { ProductContext } from '../components/Product/ProductContext';
 import { styled } from '@mui/material/styles';
 import { Icon } from '@iconify/react';
 
+import { AppBar, Box, Toolbar, Button, Menu, Typography } from '@mui/material';
+
 const Navbar = () => {
-   const { cart, setCart } = useContext(ProductContext);
-   const [anchorEl, setAnchorEl] = React.useState(null);
-   const [show, setShow] = useState(false);
+   const [anchorEl, setAnchorEl] = useState(null);
    const open = Boolean(anchorEl);
+
+   const {
+      cart,
+      setCart,
+      setOpenConfirmation,
+      openConfirmation,
+      setConfirmedOrder,
+   } = useContext(ProductContext);
+
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
+      setOpenConfirmation(false);
+   };
+
+   const handleOpenSummary = () => {
+      setOpenConfirmation(!openConfirmation);
+      handleClose();
+      setConfirmedOrder([...cart]);
+      setCart([]);
    };
    const handleClose = () => {
       setAnchorEl(null);
@@ -78,7 +87,10 @@ const Navbar = () => {
                            'aria-labelledby': 'basic-button',
                         }}
                      >
-                        <DropdownCart />
+                        <DropdownCart
+                           handleClose={handleClose}
+                           handleOpenSummary={handleOpenSummary}
+                        />
                      </StyledMenu>
                   </StyledCartBox>
                </StyledToolBar>

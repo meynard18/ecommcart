@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
 import { ProductContext } from './ProductContext';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-
+import { Box, Button, Typography, Modal } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const style = {
@@ -20,19 +16,8 @@ const style = {
 };
 
 export default function BasicModal() {
-   const {
-      data,
-      handleOpen,
-      handleClose,
-      open,
-      setOpen,
-      modal,
-      quantity,
-      setQuantity,
-      cart,
-      setCart,
-      setModal,
-   } = useContext(ProductContext);
+   const { handleClose, open, modal, quantity, cart, setCart, setModal } =
+      useContext(ProductContext);
 
    const handleAddToCart = (item) => {
       const itemIndex = cart.indexOf(item);
@@ -47,7 +32,6 @@ export default function BasicModal() {
 
    const increment = (item) => {
       const itemIndex = modal.indexOf(item);
-      console.log(itemIndex);
       if (item.quantity < item.count) {
          modal[itemIndex].quantity += 1;
          setModal([...modal]);
