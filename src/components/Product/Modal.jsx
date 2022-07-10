@@ -27,7 +27,6 @@ export default function BasicModal() {
       open,
       setOpen,
       modal,
-
       quantity,
       setQuantity,
       cart,

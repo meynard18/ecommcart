@@ -18,10 +18,11 @@ function App() {
 
    const handleOpen = () => setOpen(true);
    const handleClose = () => setOpen(false);
-   const handleCloseSummary = () => setOpenConfirmation(false);
+   // const handleCloseSummary = () => setOpenConfirmation(false);
 
    const handleAddToCart = (item) => {
       //// need to check if item is already in the cart!
+      setOpenConfirmation(false);
       const itemIndex = cart.indexOf(item);
       if (itemIndex === -1) {
          return setCart([item, ...cart]);
@@ -52,7 +53,7 @@ function App() {
       setPrice,
       openConfirmation,
       setOpenConfirmation,
-      handleCloseSummary,
+      // handleCloseSummary,
    };
    return (
       <>

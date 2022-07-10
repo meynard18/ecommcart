@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { ProductContext } from './Product/ProductContext';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Typography } from '@mui/material';
-// import OrderSummary from '../components/Product/OrderSummary';
+import OrderSummary from '../components/Product/OrderSummary';
 
 const DropdownCart = () => {
    const {
@@ -11,8 +11,9 @@ const DropdownCart = () => {
       quantity,
       price,
       setPrice,
-      // openConfirmation,
-      // setOpenConfirmation,
+      openConfirmation,
+      setOpenConfirmation,
+      handleClose,
    } = useContext(ProductContext);
 
    //// need to remove item and reset the quantity back to default
@@ -108,8 +109,11 @@ const DropdownCart = () => {
                <h3>${price}</h3>
             </AmountBox>
 
-            <CompleteOrderButton>Checkout</CompleteOrderButton>
-            {/* <OrderSummary /> */}
+            <CompleteOrderButton
+               onClick={() => setOpenConfirmation(!openConfirmation)}
+            >
+               Checkout
+            </CompleteOrderButton>
          </TotalBox>
       </MainContainer>
    );
