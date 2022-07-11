@@ -85,7 +85,6 @@ export default function BasicModal() {
                            </StyledButton>
                         </CallToAction>
                         <AddButton
-                           disabled={item.quantity < item.count ? false : true}
                            onClick={() => {
                               handleAddToCart(item);
                            }}
