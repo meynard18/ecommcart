@@ -16,19 +16,8 @@ const style = {
 };
 
 export default function BasicModal() {
-   const { handleClose, open, modal, quantity, cart, setCart, setModal } =
+   const { handleAddToCart, handleClose, open, modal, quantity, setModal } =
       useContext(ProductContext);
-
-   const handleAddToCart = (item) => {
-      const itemIndex = cart.indexOf(item);
-      if (itemIndex === -1) {
-         return setCart([item, ...cart]);
-      }
-      //// increment existing quantity if item already in the cart
-      if (cart[itemIndex].count > cart[itemIndex].quantity) {
-         setCart([...cart]);
-      }
-   };
 
    const increment = (item) => {
       const itemIndex = modal.indexOf(item);
@@ -96,6 +85,7 @@ export default function BasicModal() {
                            </StyledButton>
                         </CallToAction>
                         <AddButton
+                           disabled={item.quantity < item.count ? false : true}
                            onClick={() => {
                               handleAddToCart(item);
                            }}

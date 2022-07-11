@@ -14,16 +14,15 @@ function App() {
    const [modal, setModal] = useState([]);
    const [open, setOpen] = useState(false);
    const [price, setPrice] = useState(0);
-   const [openConfirmation, setOpenConfirmation] = useState(false);
+   const [orderReceipt, setOrderReceipt] = useState(false);
    const [confirmedOrder, setConfirmedOrder] = useState([]);
 
-   const handleOpen = () => setOpen(true);
-   const handleClose = () => setOpen(false);
-
    const handleAddToCart = (item) => {
+      setOrderReceipt(false);
+
       //// need to check if item is already in the cart!
-      setOpenConfirmation(false);
       const itemIndex = cart.indexOf(item);
+
       if (itemIndex === -1) {
          return setCart([item, ...cart]);
       }
@@ -35,6 +34,9 @@ function App() {
       }
    };
 
+   const handleOpen = () => setOpen(true);
+   const handleClose = () => setOpen(false);
+
    const foodItems = {
       data,
       setData,
@@ -42,7 +44,6 @@ function App() {
       setCart,
       quantity,
       setQuantity,
-      handleAddToCart,
       handleOpen,
       handleClose,
       open,
@@ -51,10 +52,11 @@ function App() {
       setModal,
       price,
       setPrice,
-      openConfirmation,
-      setOpenConfirmation,
+      orderReceipt,
+      setOrderReceipt,
       confirmedOrder,
       setConfirmedOrder,
+      handleAddToCart,
    };
    return (
       <>

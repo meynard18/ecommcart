@@ -3,14 +3,9 @@ import { ProductContext } from './Product/ProductContext';
 import { styled } from '@mui/material/styles';
 import { Box, Button, Typography } from '@mui/material';
 
-const DropdownCart = ({handleOpenSummary }) => {
-   const {
-      cart,
-      setCart,
-      quantity,
-      price,
-      setPrice,
-   } = useContext(ProductContext);
+const DropdownCart = ({ handleOpenSummary }) => {
+   const { cart, setCart, quantity, price, setPrice } =
+      useContext(ProductContext);
 
    //// need to remove item and reset the quantity back to default
    const removeItem = (item) => {
@@ -21,6 +16,7 @@ const DropdownCart = ({handleOpenSummary }) => {
 
    const decrement = (item) => {
       const itemIndex = cart.indexOf(item);
+
       if (cart[itemIndex].quantity !== 1) {
          cart[itemIndex].quantity -= 1;
          setCart([...cart]);
@@ -102,7 +98,7 @@ const DropdownCart = ({handleOpenSummary }) => {
             </AmountBox>
 
             <CompleteOrderButton
-               disabled={cart.length === 0 ? 'disabled' : ''}
+               disabled={cart.length === 0 ? true : false}
                onClick={handleOpenSummary}
             >
                Checkout

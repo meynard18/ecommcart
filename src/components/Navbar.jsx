@@ -13,18 +13,21 @@ const Navbar = () => {
    const {
       cart,
       setCart,
-      setOpenConfirmation,
-      openConfirmation,
+      setOrderReceipt,
+      orderReceipt,
       setConfirmedOrder,
+      setModal,
+      modal,
+      data,
    } = useContext(ProductContext);
 
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
-      setOpenConfirmation(false);
+      setOrderReceipt(false);
    };
 
    const handleOpenSummary = () => {
-      setOpenConfirmation(!openConfirmation);
+      setOrderReceipt(!orderReceipt);
       handleClose();
       setConfirmedOrder([...cart]);
       setCart([]);

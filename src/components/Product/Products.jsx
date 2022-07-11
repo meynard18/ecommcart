@@ -5,12 +5,12 @@ import { ProductContext } from './ProductContext';
 import OrderSummary from './OrderSummary';
 
 const Products = () => {
-   const { openConfirmation } = useContext(ProductContext);
+   const { orderReceipt } = useContext(ProductContext);
    return (
       <>
          <BasicModal />
          <Card />
-         {openConfirmation ? <OrderSummary /> : null}
+         {orderReceipt ? <OrderSummary /> : null}
       </>
    );
 };

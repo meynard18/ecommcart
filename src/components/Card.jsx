@@ -13,13 +13,22 @@ import {
 } from '@mui/material';
 
 const CardComponent = () => {
-   const { data, handleAddToCart, handleOpen, setModal, setOpenConfirmation } =
-      useContext(ProductContext);
+   const {
+      data,
+      handleOpen,
+      setModal,
+      setOrderReceipt,
+      orderReceipt,
+      handleAddToCart,
+   } = useContext(ProductContext);
 
    const handleModal = (item) => {
-      setModal([item]);
-      handleOpen();
-      setOpenConfirmation(false);
+      if (orderReceipt) {
+         setOrderReceipt(false);
+      } else {
+         setModal([item]);
+         handleOpen();
+      }
    };
 
    return (
@@ -60,7 +69,6 @@ const CardComponent = () => {
                      <StyledButton
                         size="small"
                         color="primary"
-                        value={item}
                         disabled={item.quantity < item.count ? false : true}
                         onClick={() => handleAddToCart(item)}
                      >
